@@ -8,6 +8,10 @@ class PostsQuery
   end
 
   def published_search(query)
-    @posts.where("published = true AND title like '%#{query}%'")
+    posts_ids = Rails.cache.fetch("posts_search/#{query}", expires_in: 1.hours) do
+      @posts.where("published = true AND title like '%#{query}%'").map(&:id)
+    end
+
+    @posts.where(id: posts_ids)
   end
 end
