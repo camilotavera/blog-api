@@ -27,13 +27,14 @@ class ApplicationController < ActionController::API
   end
 
   def render_internal_error(exception, code = nil, msg = nil)
-    log.error exception.message.to_s
+    # TODO: Implements logger
+    # log.error exception.message.to_s
     render json: {
-      status: :internal_error,
+      status: :internal_server_error,
       code: code,
       error: exception,
       message: msg
-    }, status: :internal_error
+    }, status: :internal_server_error
   end
   
 end
