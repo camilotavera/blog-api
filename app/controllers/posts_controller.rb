@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  include Secured
+  include SecuredConcern
   before_action :authenticate_user!, only: %i[create update]
 
   # GET /posts

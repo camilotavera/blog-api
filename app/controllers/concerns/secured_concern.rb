@@ -1,4 +1,4 @@
-module Secured
+module SecuredConcern
   def authenticate_user!
     token_regex = /Bearer (\w+)/
     headers = request.headers
