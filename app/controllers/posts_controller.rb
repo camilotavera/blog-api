@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @query = PostsQuery.new
     @posts = @query.published
     @posts = @query.published_search(params[:search]) if !params[:search].nil? && params[:search].present?
-    render json: @posts, status: :ok
+    render json: @posts.includes(:user), status: :ok
   end
 
   # GET /posts/{id}
